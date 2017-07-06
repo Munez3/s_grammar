@@ -200,7 +200,7 @@ var App = (function(){
   }
 
   function loadProductions(){
-    loadJSON('production.config.json').then(function(response){
+    loadJSON('/production.config.json').then(function(response){
       return JSON.parse(response);
     }).then(function(response){
       for(var i=0; i<response.productions.length; i++){
