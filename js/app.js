@@ -47,7 +47,7 @@ var App = (function(){
    });
 
   function start(){
-      loader.load(location.href+'productions/start.obj').then(function(data){
+      loader.load('https://rawgit.com/Munez3/s_grammar/master/productions/start.obj').then(function(data){
       var group = new THREE.Group();
 
       for(var i=0, length = data.length; i< length; i++){
@@ -200,7 +200,7 @@ var App = (function(){
   }
 
   function loadProductions(){
-    loadJSON(location.href+'production.config.json').then(function(response){
+    loadJSON('production.config.json').then(function(response){
       return JSON.parse(response);
     }).then(function(response){
       for(var i=0; i<response.productions.length; i++){
@@ -214,7 +214,7 @@ var App = (function(){
   }
 
   function load(src){
-    return loader.load(location.href+'productions/'+src).then(function(data){
+    return loader.load('https://rawgit.com/Munez3/s_grammar/master/productions/'+src).then(function(data){
       var group = new THREE.Group();
 
       for(var i=0, length = data.length; i< length; i++){
