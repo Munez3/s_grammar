@@ -115,7 +115,7 @@ var App = (function(){
    }
 
    function start(){
-      loader.load('./productions/start.obj').then(function(data){
+      loader.load('/productions/start.obj').then(function(data){
          var group = new THREE.Group();
 
          for(var i=0, length = data.length; i< length; i++){
