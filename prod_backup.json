@@ -1,49 +1,28 @@
 {
   "productions": [
-      {"left": "start.obj", "right": "start_r.obj"},
-
-      {"left": "head.obj", "right": "n_head_b.obj"},
-
-      {"left": "base.obj", "right": "base_r.obj"},
-      {"left": "base.obj", "right": "base_with_sword.obj"},
-      {"left": "base.obj", "right": "legs.obj"},
-
-      {"left": "base_chest.obj", "right": "chest_r.obj"},
-
-      {"left": "hand_marker_r.obj", "right": "hand_r.obj"},
-
-      {"left": "shoulder_marker_r.obj", "right": "n_shoulder_r.obj"},
-
-      {"left": "arm.obj", "right": "hand_l_1.obj"},
-      {"left": "arm.obj", "right": "hand_l_2.obj"},
-      {"left": "arm.obj", "right": "hand_r_2.obj"},
-      {"left": "arm.obj", "right": "hand_r_2.obj"},
-      {"left": "shoulder.obj", "right": "n_shoulder_l.obj"},
-      {"left": "sword.obj", "right": "sword_r.obj"},
-
-      {"left": "shoulder_marker_r.obj", "right": "n_shoulder_r.obj"}
-  ]
-}
-
-
-{
-  "productions": [
       {"left": "start.obj", "right": "r_start.obj"},
 
       {"left": "l_head.obj", "right": "r_head.obj"},
+      {"left": "l_head_face.obj", "right": "r_head_face1.obj"},
+      {"left": "l_head_face.obj", "right": "r_head_face2.obj"},
+      {"left": "l_head_forehead.obj", "right": "r_head_forehead1.obj"},
 
       {"left": "l_chest.obj", "right": "r_chest.obj"},
 
       {"left": "l_hand_r.obj", "right": "r_hand_r.obj"},
-
       {"left": "l_shoulder_r.obj", "right": "r_shoulder_r.obj"},
-
       {"left": "l_arm_r.obj", "right": "r_arm_r1.obj"},
+      {"left": "l_arm_r.obj", "right": "r_arm_r2.obj"},
+
+      {"left": "l_hand_l.obj", "right": "r_hand_l.obj"},
+      {"left": "l_shoulder_l.obj", "right": "r_shoulder_l.obj"},
+      {"left": "l_arm_l.obj", "right": "r_arm_l1.obj"},
+      {"left": "l_arm_l.obj", "right": "r_arm_l2.obj"},
 
       {"left": "l_base.obj", "right": "r_base.obj"},
-      {"left": "l_base.obj", "right": "r_base_sword.obj"},
       {"left": "l_base.obj", "right": "r_base_legs.obj"},
 
+      {"left": "l_base.obj", "right": "r_base_sword.obj"},
       {"left": "l_sword.obj", "right": "r_sword.obj"}
   ]
 }

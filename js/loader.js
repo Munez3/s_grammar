@@ -10,7 +10,8 @@ var Loader = function(){
 
         var box = new THREE.Box3().setFromObject( object );
         var verticalCenter = box.getCenter().y;
-      //   console.log(verticalCenter);
+        verticalCenter = (verticalCenter.toFixed(3))/1;
+      //   console.log(box, object, verticalCenter);
 
       //   console.log(box, object, verticalCenter);
 
@@ -25,14 +26,13 @@ var Loader = function(){
             // geometry.center();
 
             for(var i=0; i<geometry.vertices.length; i++){
-              geometry.vertices[i].x = geometry.vertices[i].x.toFixed(3);
-              geometry.vertices[i].y = geometry.vertices[i].y.toFixed(3);
-              geometry.vertices[i].z = geometry.vertices[i].z.toFixed(3);
+              geometry.vertices[i].x = (geometry.vertices[i].x.toFixed(3))/1;
+              geometry.vertices[i].y = (geometry.vertices[i].y.toFixed(3))/1 - verticalCenter;
+              geometry.vertices[i].z = (geometry.vertices[i].z.toFixed(3))/1;
             }
+            // console.log(geometry);
             child.geometry = geometry;
-            child.position.y = -verticalCenter;
-
-            // console.log(child.geometry);
+            // child.position.y = -verticalCenter;
 
             child.updateMatrix();
             child.geometry.applyMatrix(child.matrix);
