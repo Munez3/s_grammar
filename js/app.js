@@ -55,7 +55,6 @@ var App = (function(){
    }
 
    function testing(object){
-      console.log('lol');
       var vertices = object.geometry.vertices;
       var points = [];
       var superPoints = [];
