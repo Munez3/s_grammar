@@ -25,14 +25,16 @@ var App = (function(){
   var shapes = [];
   var productions = [];
 
+  var modifierVertex = 7;
+
   createScene();
 
   loadProductions();
 
 
   var nextStep = document.getElementsByClassName('next')[0];
-  nextStep.addEventListener('click', searchN);
-  // nextStep.addEventListener('click', testing);
+  // nextStep.addEventListener('click', searchN);
+  nextStep.addEventListener('click', reset);
   var rotate = document.getElementsByClassName('rotate')[0];
   rotate.addEventListener('click', toggleRotation);
 
@@ -47,75 +49,105 @@ var App = (function(){
       render();
    });
 
+   function reset(){
+      scene.children.pop();
+      start();
+   }
+
    function testing(object){
-      // var object = scene.children[2].children[0];
+      console.log('lol');
       var vertices = object.geometry.vertices;
       var points = [];
+      var superPoints = [];
       for(var i=0; i<vertices.length; i++){
          points = [{v: vertices[i], index: i}];
          var x = vertices[i].x;
          var z = vertices[i].z;
          for(var j=i+1; j<vertices.length; j++){
-            if(vertices[j].x === x && vertices[j].z === z)
+            // if(vertices[j].x === x && vertices[j].z === z)
+            //    points.push({v: vertices[j], index: j});
+            if(vertices[j].z === z)
                points.push({v: vertices[j], index: j});
          }
-         if(points.length === 9){
-            // console.log(points);
+         // console.log(points.length);
+         // if(points.length === modifierVertex + 2){
+         if(points.length >= modifierVertex + 2){
+            // superPoints.push(points);
+            // points = [{v: vertices[i], index: i}];
+            if(Math.random() > 0.5){
+               points.reverse();
+            }
             var newP = modify(points);
+            if(Math.random() > 0.5){
+               newP.reverse();
+            }
 
-            vertices[points[1].index].x += newP[0][0];
-            vertices[points[2].index].x += newP[1][0];
-            vertices[points[3].index].x += newP[2][0];
-            vertices[points[4].index].x += newP[3][0];
-            vertices[points[5].index].x += newP[4][0];
-            vertices[points[6].index].x += newP[5][0];
-            vertices[points[7].index].x += newP[6][0];
-            vertices[points[8].index].x += newP[7][0];
-            // vertices[points[9].index].x += newP[8][0];
-            // vertices[points[10].index].x += newP[9][0];
-
-            vertices[points[1].index].y += newP[0][1];
-            vertices[points[2].index].y += newP[1][1];
-            vertices[points[3].index].y += newP[2][1];
-            vertices[points[4].index].y += newP[3][1];
-            vertices[points[5].index].y += newP[4][1];
-            vertices[points[6].index].y += newP[5][1];
-            vertices[points[7].index].y += newP[6][1];
-            vertices[points[8].index].y += newP[7][1];
-
-            // object.updateMatrix();
-            // object.geometry.applyMatrix(object.matrix);
-            // object.matrix.identity();
-            // object.geometry.verticesNeedUpdate = true;
-            // return;
+            // for(var k=0; k<modifierVertex; k++){
+            for(var k=0; k<points.length-2; k++){
+               vertices[points[k+1].index].x += newP[k][0];
+               // vertices[points[k+1].index].y += newP[k][1];
+               // vertices[points[k+1].index].z += newP[k][2];
+               // vertices[points[k+1].index].y += newP[k][1];
+            }
          }
       }
    }
 
    function modify(p){
       var newPoints = [];
-      var t = 1/8;
-      var p1 = (Math.random()*2);
-      var p2 = -(Math.random()*2);
+      var t = 1/modifierVertex;
+      var p1 = Math.round((Math.random() * 2) - 2);
+      var p2 = Math.round((Math.random() * 5) - 5);
+      var p3 = Math.round((Math.random() * 2) - 1);
+      var p4 = Math.round((Math.random() * 15) - 8);
 
-      // console.log(p[0].v.x);
+      // // console.log(p[0].v.x);
+      // console.log(p1, p2, p3, p4);
 
-      for(var i=0; i<8; i++){
-         var x, y, z;
-         x = Math.pow((1-t), 3) * p[0].v.x + 3*Math.pow((1-t),2) * t * p1 + 3 * (1-t) * Math.pow(t,2) * p2 + Math.pow(t,3) * p[p.length-1].v.x;
-         y = Math.pow((1-t), 3) * p[0].v.y + 3*Math.pow((1-t),2) * t * p1 + 3 * (1-t) * Math.pow(t,2) * p2 + Math.pow(t,3) * p[p.length-1].v.y;
-         // y = (1+t) * p[0].v.y + t * p[p.length-1].v.y;
-         // z = (1+t) * p[0].v.z + t * p[p.length-1].v.z;
-         // console.log(x/(p[0].v.x*10), x);
-         newPoints.push(new Array(x/10, y/10));
-         t += 1/8;
-      }
+      if(Math.random() > 0.9) p1 = -p1;
+      if(Math.random() > 0.9) p2 = -p2;
+      if(Math.random() > 0.5) p3 = -p3;
+      if(Math.random() > 0.9) p4 = -p4;
+
+      // if(Math.random() < 0.5){
+         for(var i=0; i<p.length-2; i++){
+            var x, y, z;
+            x = Math.pow((1-t), 5) * p[0].v.x + Math.pow((1-t), 4) * p1 * t + Math.pow((1-t), 3) * p2 * Math.pow(t,2) + Math.pow((1-t),2) * Math.pow(t,3) * p3 + (1-t) * Math.pow(t,4) * p4 + Math.pow(t,5) * p[p.length-1].v.x;
+            // y = Math.pow((1-t), 5) * p[0].v.y + Math.pow((1-t), 4) * p1 * t + Math.pow((1-t), 3) * p2 * Math.pow(t,2) + Math.pow((1-t),2) * Math.pow(t,3) * p3 + (1-t) * Math.pow(t,4) * p4 + Math.pow(t,5) * p[p.length-1].v.y;
+            // z = Math.pow((1-t), 5) * p[0].v.z + Math.pow((1-t), 4) * p1 * t + Math.pow((1-t), 3) * p2 * Math.pow(t,2) + Math.pow((1-t),2) * Math.pow(t,3) * p3 + (1-t) * Math.pow(t,4) * p4 + Math.pow(t,5) * p[p.length-1].v.z;
+            // y = Math.pow((1-t), 4) * p[0].v.y + Math.pow((1-t), 3) * p1 * t + Math.pow((1-t),2) * Math.pow(t,2) * p2 + (1-t) * Math.pow(t,3) * p3 + Math.pow(t,4) * p[p.length-1].v.y;
+            // y = Math.pow((1-t), 3) * p[0].v.y + 3*Math.pow((1-t),2) * t * p1 + 3 * (1-t) * Math.pow(t,2) * p2 + Math.pow(t,3) * p[p.length-1].v.y;
+            // y = (1+t) * p[0].v.y + t * p[p.length-1].v.y;
+            // z = (1+t) * p[0].v.z + t * p[p.length-1].v.z;
+            // console.log(x/(p[0].v.x*10), x);
+            // console.log(x, y);
+            newPoints.push([x/30]);
+            // newPoints.push(new Array(x/30, y/60, z/10));
+            t += 1/(p.length-2);
+         }
+      // }else{
+      //    for(var i=0; i<modifierVertex/2; i++){
+      //       var x, y, z;
+      //       x = Math.pow((1-t), 3) * p[0].v.x + 3*Math.pow((1-t),2) * t * p1 + 3 * (1-t) * Math.pow(t,2) * p2 + Math.pow(t,3) * p[4].v.x;
+      //       y = Math.pow((1-t), 3) * p[0].v.y + 3*Math.pow((1-t),2) * t * p1 + 3 * (1-t) * Math.pow(t,2) * p2 + Math.pow(t,3) * p[4].v.y;
+      //       newPoints.push(new Array(x/100, y/50));
+      //       t += 1/(modifierVertex/2);
+      //    }
+      //    newPoints.push(new Array(0, 0));
+      //    for(var i=0; i<modifierVertex/2; i++){
+      //       var x, y, z;
+      //       x = Math.pow((1-t), 3) * p[4].v.x + 3*Math.pow((1-t),2) * t * p1 + 3 * (1-t) * Math.pow(t,2) * p2 + Math.pow(t,3) * p[p.length-1].v.x;
+      //       y = Math.pow((1-t), 3) * p[4].v.y + 3*Math.pow((1-t),2) * t * p1 + 3 * (1-t) * Math.pow(t,2) * p2 + Math.pow(t,3) * p[p.length-1].v.y;
+      //       newPoints.push(new Array(x/100, y/50));
+      //       t += 1/(modifierVertex/2);
+      //    }
+      // }
       // console.log(newPoints);
       return newPoints;
    }
 
    function start(){
-      loader.load('/productions/start.obj').then(function(data){
+      loader.load('./start.obj').then(function(data){
          var group = new THREE.Group();
 
          for(var i=0, length = data.length; i< length; i++){
@@ -125,11 +157,11 @@ var App = (function(){
          }
          scene.add(group);
 
-         // var flag = 1;
+         var flag = 1;
+         while(flag){
+            flag = searchN(flag);
+         }
          // setTimeout(function(){
-         //    while(flag){
-         //       flag = searchN(flag);
-         //    }
          // }, 300);
 
       });
@@ -271,8 +303,20 @@ var App = (function(){
       newS.position.x = center.x;
       newS.position.y = center.y;
 
-      testing(newS);
+      // if(newS.geometry.vertices.length < 400)
+         testing(newS);
 
+      // if(Math.random() > 0.9){
+      //    if(Math.random() > 0.95){
+      //       newS.rotation.x += Math.random();
+      //    }
+      //    if(Math.random() > 0.95){
+      //       newS.rotation.y += Math.random();
+      //    }
+      //    if(Math.random() > 0.95){
+      //       newS.rotation.z += Math.random();
+      //    }
+      // }
 
       scene.children[2].add(newS);
     }
@@ -322,7 +366,9 @@ var App = (function(){
         });
       }
     }).then(function(){
-      start();
+      setTimeout(function(){
+         start();
+      }, 700);
     });
   }
 
