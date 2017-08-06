@@ -95,10 +95,10 @@ var App = (function(){
    function modify(p){
       var newPoints = [];
       var t = 1/modifierVertex;
-      var p1 = Math.round((Math.random() * 2) - 2);
-      var p2 = Math.round((Math.random() * 5) - 5);
-      var p3 = Math.round((Math.random() * 2) - 1);
-      var p4 = Math.round((Math.random() * 15) - 8);
+      var p1 = Math.round((Math.random() * 4));
+      var p2 = Math.round((Math.random() * 4));
+      var p3 = Math.round((Math.random() * 4));
+      var p4 = Math.round((Math.random() * 4));
 
       // // console.log(p[0].v.x);
       // console.log(p1, p2, p3, p4);
@@ -107,6 +107,11 @@ var App = (function(){
       if(Math.random() > 0.9) p2 = -p2;
       if(Math.random() > 0.5) p3 = -p3;
       if(Math.random() > 0.9) p4 = -p4;
+
+      p1 = p[0].v.x + p1;
+      p2 = p[0].v.x + p2;
+      p3 = p[p.length-1].v.x + p3;
+      p4 = p[p.length-1].v.x + p4;
 
       // if(Math.random() < 0.5){
          for(var i=0; i<p.length-2; i++){
@@ -302,7 +307,7 @@ var App = (function(){
       newS.position.x = center.x;
       newS.position.y = center.y;
 
-      // if(newS.geometry.vertices.length < 400)
+      if(Math.random() > 0.4)
          testing(newS);
 
       // if(Math.random() > 0.9){
