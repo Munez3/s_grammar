@@ -387,7 +387,7 @@ var App = (function(){
                for(var m=0; m<sameArrays.length; m++){
                   for(var b=0; b<sameArrays[m].length; b++){
                      sameArrays[m][b].v.x = points[b].v.x;
-                     
+
                      sameArrays[m][b].v.y = points[b].v.y;
                   }
                }
@@ -411,7 +411,7 @@ var App = (function(){
             //x0(1-t)^3 + 3tx1(1-t)^2 + 3t^2x2(1-t) + t^3x3
             x = p[pointsAmount*i].v.x*Math.pow((1-t), 3) + 3 * p1 * t * Math.pow((1-t), 2) + 3 * p2 * Math.pow(t, 2) * (1-t) + p[pointsAmount*i+pointsAmount].v.x * Math.pow(t, 3);
             y = p[pointsAmount*i].v.y*Math.pow((1-t), 3) + 3 * p1 * t * Math.pow((1-t), 2) + 3 * p2 * Math.pow(t, 2) * (1-t) + p[pointsAmount*i+pointsAmount].v.y * Math.pow(t, 3);
-            newPoints.push({x: x/10, y: y/2});
+            newPoints.push({x: x/10, y: y/5});
             // newPoints.push(new Array(x/30, y/60, z/10));
             t += 1/pointsAmount;
          }
