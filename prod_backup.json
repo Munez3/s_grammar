@@ -14,18 +14,21 @@
       {"left": "l_chest.obj", "right": "r_chest2.obj"},
 
       {"left": "l_hand_r.obj", "right": "r_hand_r.obj"},
+      {"left": "l_hand_r.obj", "right": "r_hand_u.obj"},
       {"left": "l_shoulder_r.obj", "right": "r_shoulder_r.obj"},
       {"left": "l_shoulder_r.obj", "right": "r_shoulder_r2.obj"},
       {"left": "l_arm_r.obj", "right": "r_arm_r1.obj"},
       {"left": "l_arm_r.obj", "right": "r_arm_r2.obj"},
 
       {"left": "l_hand_l.obj", "right": "r_hand_l.obj"},
+      {"left": "l_hand_l.obj", "right": "r_hand_u.obj"},
       {"left": "l_shoulder_l.obj", "right": "r_shoulder_l.obj"},
       {"left": "l_shoulder_l.obj", "right": "r_shoulder_l2.obj"},
       {"left": "l_arm_l.obj", "right": "r_arm_l1.obj"},
       {"left": "l_arm_l.obj", "right": "r_arm_l2.obj"},
 
       {"left": "l_base.obj", "right": "r_base.obj"},
+      {"left": "l_base.obj", "right": "r_base_u.obj"},
       {"left": "l_base.obj", "right": "r_base_legs.obj"},
       {"left": "l_base.obj", "right": "r_base_sword.obj"},
       {"left": "l_sword.obj", "right": "r_sword.obj"}
