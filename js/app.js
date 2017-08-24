@@ -344,7 +344,7 @@ var App = (function(){
                // console.log(points);
                var newP = calculateBezier(points);
                if(Math.random() > 0.5) newP.reverse();
-               console.log(newP);
+               // console.log(newP);
                for(var k=0; k<newP.length/(pointsAmount-1); k++){
                   points[pointsAmount*k+1].v.x += newP[(pointsAmount-1)*k].x;
                   points[pointsAmount*k+2].v.x += newP[(pointsAmount-1)*k+1].x;
@@ -387,6 +387,7 @@ var App = (function(){
                for(var m=0; m<sameArrays.length; m++){
                   for(var b=0; b<sameArrays[m].length; b++){
                      sameArrays[m][b].v.x = points[b].v.x;
+                     sameArrays[m][b].v.y = points[b].v.y;
                   }
                }
             }
