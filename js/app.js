@@ -25,7 +25,7 @@ var App = (function(){
    var shapes = [];
    var productions = [];
    var requestId = undefined;
-   var przeskalowanie = 15;
+   var przeskalowanie = 15;  
    var pointsAmount = 8;
    var bezierParameters = [
       {min: 0, max: 0},
