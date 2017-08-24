@@ -387,7 +387,7 @@ var App = (function(){
                for(var m=0; m<sameArrays.length; m++){
                   for(var b=0; b<sameArrays[m].length; b++){
                      sameArrays[m][b].v.x = points[b].v.x;
-                     sameArrays[m][b].v.y = points[b].v.y;
+                     sameArrays[m][b].v.y = points[b].v.y; 
                   }
                }
             }
