@@ -9,7 +9,6 @@
       {"left": "l_head_forehead.obj", "right": "r_head_forehead3.obj"},
 
       {"left": "l_chest.obj", "right": "r_chest.obj"},
-      {"left": "l_chest.obj", "right": "r_base_u3.obj"},
       {"left": "l_chest.obj", "right": "r_chest2.obj"},
 
       {"left": "l_hand_r.obj", "right": "r_hand_r.obj"},

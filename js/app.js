@@ -26,7 +26,7 @@ var App = (function(){
    var productions = [];
    var requestId = undefined;
    var przeskalowanie = 15;
-   var pointsAmount = 8;
+   var pointsAmount = 10;
    var bezierParameters = [
       {min: 0, max: 0},
       {min: -1.5/przeskalowanie, max: 3/przeskalowanie},
@@ -331,7 +331,7 @@ var App = (function(){
                //    points.push({v: vertices[j], index: j});
             }
             // console.log(points, object);
-            if(points.length >= 9){
+            if(points.length >= 11){
                points.sort(function(a,b){
                   return a.v.y - b.v.y;
                });
@@ -343,7 +343,11 @@ var App = (function(){
                }
                // console.log(points);
                var newP = calculateBezier(points);
-               if(Math.random() > 0.5) newP.reverse();
+               // console.log('lol');
+               // if(Math.random() > 0.8){
+               //    newP.reverse();
+               //    console.log(newP);
+               // }
                // console.log(newP);
                for(var k=0; k<newP.length/(pointsAmount-1); k++){
                   points[pointsAmount*k+1].v.x += newP[(pointsAmount-1)*k].x;
@@ -353,6 +357,8 @@ var App = (function(){
                   points[pointsAmount*k+5].v.x += newP[(pointsAmount-1)*k+4].x;
                   points[pointsAmount*k+6].v.x += newP[(pointsAmount-1)*k+5].x;
                   points[pointsAmount*k+7].v.x += newP[(pointsAmount-1)*k+6].x;
+                  points[pointsAmount*k+8].v.x += newP[(pointsAmount-1)*k+7].x;
+                  points[pointsAmount*k+9].v.x += newP[(pointsAmount-1)*k+8].x;
 
                   points[pointsAmount*k+1].v.y += newP[(pointsAmount-1)*k].y;
                   points[pointsAmount*k+2].v.y += newP[(pointsAmount-1)*k+1].y;
@@ -361,6 +367,8 @@ var App = (function(){
                   points[pointsAmount*k+5].v.y += newP[(pointsAmount-1)*k+4].y;
                   points[pointsAmount*k+6].v.y += newP[(pointsAmount-1)*k+5].y;
                   points[pointsAmount*k+7].v.y += newP[(pointsAmount-1)*k+6].y;
+                  points[pointsAmount*k+8].v.y += newP[(pointsAmount-1)*k+7].y;
+                  points[pointsAmount*k+9].v.y += newP[(pointsAmount-1)*k+8].y;
                }
                // console.log(newP, points);
 
@@ -411,7 +419,7 @@ var App = (function(){
             //x0(1-t)^3 + 3tx1(1-t)^2 + 3t^2x2(1-t) + t^3x3
             x = p[pointsAmount*i].v.x*Math.pow((1-t), 3) + 3 * p1 * t * Math.pow((1-t), 2) + 3 * p2 * Math.pow(t, 2) * (1-t) + p[pointsAmount*i+pointsAmount].v.x * Math.pow(t, 3);
             y = p[pointsAmount*i].v.y*Math.pow((1-t), 3) + 3 * p1 * t * Math.pow((1-t), 2) + 3 * p2 * Math.pow(t, 2) * (1-t) + p[pointsAmount*i+pointsAmount].v.y * Math.pow(t, 3);
-            newPoints.push({x: x/10, y: y/5});
+            newPoints.push({x: x/5, y: y/5});
             // newPoints.push(new Array(x/30, y/60, z/10));
             t += 1/pointsAmount;
          }
