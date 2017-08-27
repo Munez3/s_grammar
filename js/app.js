@@ -26,6 +26,7 @@ var App = (function(){
    var productions = [];
    var requestId = undefined;
    var przeskalowanie = 15;
+   //ilośc punktów wchodzących w skład jednego spline - 1
    var pointsAmount = 10;
    var bezierParameters = [
       {min: 0, max: 0},
@@ -41,6 +42,21 @@ var App = (function(){
       {min: -2/przeskalowanie, max: 1/przeskalowanie},
       {min: -3.5/przeskalowanie, max: -3/przeskalowanie},
       {min: -2.25/przeskalowanie, max: 1/przeskalowanie}
+   ];
+   var bezierParametersY = [
+      {min: 0, max: 0},
+      {min: -1.5/przeskalowanie, max: 1.25/przeskalowanie},
+      {min: -3.75/przeskalowanie, max: 3/przeskalowanie},
+      {min: -2.5/przeskalowanie, max: 2.5/przeskalowanie},
+      {min: -2/przeskalowanie, max: 4.5/przeskalowanie},
+      {min: -3.5/przeskalowanie, max: 4/przeskalowanie},
+      {min: -3/przeskalowanie, max: 8.5/przeskalowanie},
+      {min: -5/przeskalowanie, max: 8.5/przeskalowanie},
+      {min: -3.75/przeskalowanie, max: 11/przeskalowanie},
+      {min: -2.5/przeskalowanie, max: 11.5/przeskalowanie},
+      {min: -2/przeskalowanie, max: 1/przeskalowanie},
+      {min: -3.5/przeskalowanie, max: 0.25/przeskalowanie},
+      {min: -2.25/przeskalowanie, max: 1.5/przeskalowanie}
    ];
 
    var modifierVertex = 7;
@@ -338,7 +354,8 @@ var App = (function(){
 
                var k= pointsAmount;
                while(typeof points[k] !== 'undefined'){
-                  points[3*(k/pointsAmount)].v.x += (Math.random() * (bezierParameters[3*(k/pointsAmount)].max + Math.abs(bezierParameters[3*(k/pointsAmount)].min))) + bezierParameters[3*(k/pointsAmount)].min;
+                  points[k].v.x += (Math.random() * (bezierParameters[3*(k/pointsAmount)].max + Math.abs(bezierParameters[3*(k/pointsAmount)].min))) + bezierParameters[3*(k/pointsAmount)].min;
+                  points[k].v.y += (Math.random() * (bezierParametersY[3*(k/pointsAmount)].max));
                   k += pointsAmount;
                }
                // console.log(points);
@@ -348,7 +365,7 @@ var App = (function(){
                //    newP.reverse();
                //    console.log(newP);
                // }
-               // console.log(newP);
+               // console.log(newP.length/(pointsAmount-1));
                for(var k=0; k<newP.length/(pointsAmount-1); k++){
                   points[pointsAmount*k+1].v.x += newP[(pointsAmount-1)*k].x;
                   points[pointsAmount*k+2].v.x += newP[(pointsAmount-1)*k+1].x;
@@ -358,7 +375,7 @@ var App = (function(){
                   points[pointsAmount*k+6].v.x += newP[(pointsAmount-1)*k+5].x;
                   points[pointsAmount*k+7].v.x += newP[(pointsAmount-1)*k+6].x;
                   points[pointsAmount*k+8].v.x += newP[(pointsAmount-1)*k+7].x;
-                  points[pointsAmount*k+9].v.x += newP[(pointsAmount-1)*k+8].x;
+                  // points[pointsAmount*k+9].v.x += newP[(pointsAmount-1)*k+8].x;
 
                   points[pointsAmount*k+1].v.y += newP[(pointsAmount-1)*k].y;
                   points[pointsAmount*k+2].v.y += newP[(pointsAmount-1)*k+1].y;
@@ -368,7 +385,7 @@ var App = (function(){
                   points[pointsAmount*k+6].v.y += newP[(pointsAmount-1)*k+5].y;
                   points[pointsAmount*k+7].v.y += newP[(pointsAmount-1)*k+6].y;
                   points[pointsAmount*k+8].v.y += newP[(pointsAmount-1)*k+7].y;
-                  points[pointsAmount*k+9].v.y += newP[(pointsAmount-1)*k+8].y;
+                  // points[pointsAmount*k+9].v.y += newP[(pointsAmount-1)*k+8].y;
                }
                // console.log(newP, points);
 
@@ -406,19 +423,21 @@ var App = (function(){
 
    function calculateBezier(p){
       var newPoints = [];
-      var p1, p2, x, y;
+      var p1, p1Y, p2, p2Y, x, y;
 
       var splices = Math.floor(p.length / pointsAmount);
       for(var i=0; i<splices; i++){
          var t = 1/pointsAmount;
          p1 = (Math.random() * (bezierParameters[3*i+1].max + Math.abs(bezierParameters[3*i+1].min))) + bezierParameters[3*i+1].min;
          p2 = (Math.random() * (bezierParameters[3*i+2].max + Math.abs(bezierParameters[3*i+2].min))) + bezierParameters[3*i+2].min;
+         p1Y = (Math.random() * (bezierParametersY[3*i+1].max));
+         p2Y = (Math.random() * (bezierParametersY[3*i+2].max));
 
          for(var j=0; j<(pointsAmount-1); j++){
             //sklejone krzywe bezier 3 stopnia
             //x0(1-t)^3 + 3tx1(1-t)^2 + 3t^2x2(1-t) + t^3x3
             x = p[pointsAmount*i].v.x*Math.pow((1-t), 3) + 3 * p1 * t * Math.pow((1-t), 2) + 3 * p2 * Math.pow(t, 2) * (1-t) + p[pointsAmount*i+pointsAmount].v.x * Math.pow(t, 3);
-            y = p[pointsAmount*i].v.y*Math.pow((1-t), 3) + 3 * p1 * t * Math.pow((1-t), 2) + 3 * p2 * Math.pow(t, 2) * (1-t) + p[pointsAmount*i+pointsAmount].v.y * Math.pow(t, 3);
+            y = p[pointsAmount*i].v.y*Math.pow((1-t), 3) + 3 * p1Y * t * Math.pow((1-t), 2) + 3 * p2Y * Math.pow(t, 2) * (1-t) + p[pointsAmount*i+pointsAmount].v.y * Math.pow(t, 3);
             newPoints.push({x: x/5, y: y/5});
             // newPoints.push(new Array(x/30, y/60, z/10));
             t += 1/pointsAmount;
