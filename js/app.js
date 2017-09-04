@@ -25,7 +25,7 @@ var App = (function(){
    var shapes = [];
    var productions = [];
    var requestId = undefined;
-   var przeskalowanie = 15;
+   var przeskalowanie = 1;
    //ilośc punktów wchodzących w skład jednego spline - 1
    var pointsAmount = 10;
    var bezierParameters = [
@@ -58,6 +58,33 @@ var App = (function(){
       {min: -3.5/przeskalowanie, max: 0.25/przeskalowanie},
       {min: -2.25/przeskalowanie, max: 1.5/przeskalowanie}
    ];
+
+   var staticParameters = [
+      {min: 0, max: 0},
+      {min: 3/przeskalowanie, max: 3},
+      {min: -1/przeskalowanie, max: 3},
+      {min: 0.75/przeskalowanie, max: 3},
+      {min: 4.75/przeskalowanie, max: 3/przeskalowanie},
+      {min: -1.75/przeskalowanie, max: 3/przeskalowanie},
+      {min: 1/przeskalowanie, max: 3/przeskalowanie},
+      {min: 2.25/przeskalowanie, max: 3/przeskalowanie},
+      {min: 3.75/przeskalowanie, max: 3/przeskalowanie},
+      {min: 3.25/przeskalowanie, max: 3/przeskalowanie}
+   ];
+   var staticParametersY = [
+      {min: 0, max: 0},
+      {min: 2/przeskalowanie, max: 1.25/przeskalowanie},
+      {min: 2/przeskalowanie, max: 3/przeskalowanie},
+      {min: 4/przeskalowanie, max: 2.5/przeskalowanie},
+      {min: 8.25/przeskalowanie, max: 4.5/przeskalowanie},
+      {min: 8.75/przeskalowanie, max: 4/przeskalowanie},
+      {min: 10.75/przeskalowanie, max: 8.5/przeskalowanie},
+      {min: 11.5/przeskalowanie, max: 8.5/przeskalowanie},
+      {min: 12.25/przeskalowanie, max: 11/przeskalowanie},
+      {min: 13.5/przeskalowanie, max: 11.5/przeskalowanie}
+   ];
+
+   // staticParametersY.reverse();
 
    var modifierVertex = 7;
 
@@ -176,8 +203,6 @@ var App = (function(){
          while(flag){
             flag = searchN(flag);
          }
-         // setTimeout(function(){
-         // }, 300);
 
       });
    }
@@ -335,6 +360,7 @@ var App = (function(){
       var points = [];
       var done = [];
       for(var i=0; i<vertices.length; i++){
+
          if( (vertices[i].x === minX || vertices[i].x === maxX) && done.indexOf(vertices[i].x) === -1){
             done.push(vertices[i].x);
             points = [{v: vertices[i], index: i}];
@@ -351,14 +377,13 @@ var App = (function(){
                points.sort(function(a,b){
                   return a.v.y - b.v.y;
                });
-
                var k= pointsAmount;
                while(typeof points[k] !== 'undefined'){
-                  points[k].v.x += (Math.random() * (bezierParameters[3*(k/pointsAmount)].max + Math.abs(bezierParameters[3*(k/pointsAmount)].min))) + bezierParameters[3*(k/pointsAmount)].min;
-                  points[k].v.y += (Math.random() * (bezierParametersY[3*(k/pointsAmount)].max));
+                  points[k].v.x += ((Math.random() * (bezierParameters[3*(k/pointsAmount)].max + Math.abs(bezierParameters[3*(k/pointsAmount)].min))) + bezierParameters[3*(k/pointsAmount)].min)/15;
+                  // points[k].v.y += (Math.random() * (bezierParametersY[3*(k/pointsAmount)].max));
+                  // points[k].v.x += staticParameters[3*(k/pointsAmount)].min/10;
                   k += pointsAmount;
                }
-               // console.log(points);
                var newP = calculateBezier(points);
                // console.log('lol');
                // if(Math.random() > 0.8){
@@ -375,17 +400,18 @@ var App = (function(){
                   points[pointsAmount*k+6].v.x += newP[(pointsAmount-1)*k+5].x;
                   points[pointsAmount*k+7].v.x += newP[(pointsAmount-1)*k+6].x;
                   points[pointsAmount*k+8].v.x += newP[(pointsAmount-1)*k+7].x;
-                  // points[pointsAmount*k+9].v.x += newP[(pointsAmount-1)*k+8].x;
+                  points[pointsAmount*k+9].v.x += newP[(pointsAmount-1)*k+8].x;
 
-                  points[pointsAmount*k+1].v.y += newP[(pointsAmount-1)*k].y;
-                  points[pointsAmount*k+2].v.y += newP[(pointsAmount-1)*k+1].y;
-                  points[pointsAmount*k+3].v.y += newP[(pointsAmount-1)*k+2].y;
-                  points[pointsAmount*k+4].v.y += newP[(pointsAmount-1)*k+3].y;
-                  points[pointsAmount*k+5].v.y += newP[(pointsAmount-1)*k+4].y;
-                  points[pointsAmount*k+6].v.y += newP[(pointsAmount-1)*k+5].y;
-                  points[pointsAmount*k+7].v.y += newP[(pointsAmount-1)*k+6].y;
-                  points[pointsAmount*k+8].v.y += newP[(pointsAmount-1)*k+7].y;
+                  // points[pointsAmount*k+1].v.y += newP[(pointsAmount-1)*k].y;
+                  // points[pointsAmount*k+2].v.y += newP[(pointsAmount-1)*k+1].y;
+                  // points[pointsAmount*k+3].v.y += newP[(pointsAmount-1)*k+2].y;
+                  // points[pointsAmount*k+4].v.y += newP[(pointsAmount-1)*k+3].y;
+                  // points[pointsAmount*k+5].v.y += newP[(pointsAmount-1)*k+4].y;
+                  // points[pointsAmount*k+6].v.y += newP[(pointsAmount-1)*k+5].y;
+                  // points[pointsAmount*k+7].v.y += newP[(pointsAmount-1)*k+6].y;
+                  // points[pointsAmount*k+8].v.y += newP[(pointsAmount-1)*k+7].y;
                   // points[pointsAmount*k+9].v.y += newP[(pointsAmount-1)*k+8].y;
+
                }
                // console.log(newP, points);
 
@@ -416,6 +442,7 @@ var App = (function(){
                      sameArrays[m][b].v.y = points[b].v.y;
                   }
                }
+
             }
          }
       }
@@ -430,24 +457,31 @@ var App = (function(){
          var t = 1/pointsAmount;
          p1 = (Math.random() * (bezierParameters[3*i+1].max + Math.abs(bezierParameters[3*i+1].min))) + bezierParameters[3*i+1].min;
          p2 = (Math.random() * (bezierParameters[3*i+2].max + Math.abs(bezierParameters[3*i+2].min))) + bezierParameters[3*i+2].min;
-         p1Y = (Math.random() * (bezierParametersY[3*i+1].max));
-         p2Y = (Math.random() * (bezierParametersY[3*i+2].max));
+         // p1Y = (Math.random() * (bezierParametersY[3*i+1].max));
+         // p2Y = (Math.random() * (bezierParametersY[3*i+2].max));
+         // p1 = bezierParameters[3*i+1].max;
+         // p2 = bezierParameters[3*i+2].max;
+         // p1Y = bezierParametersY[3*i+1].max;
+         // p2Y = bezierParametersY[3*i+2].max;
+         // p1 = staticParameters[3*i+1].min;
+         // p2 = staticParameters[3*i+2].min;
 
          for(var j=0; j<(pointsAmount-1); j++){
             //sklejone krzywe bezier 3 stopnia
             //x0(1-t)^3 + 3tx1(1-t)^2 + 3t^2x2(1-t) + t^3x3
             x = p[pointsAmount*i].v.x*Math.pow((1-t), 3) + 3 * p1 * t * Math.pow((1-t), 2) + 3 * p2 * Math.pow(t, 2) * (1-t) + p[pointsAmount*i+pointsAmount].v.x * Math.pow(t, 3);
-            y = p[pointsAmount*i].v.y*Math.pow((1-t), 3) + 3 * p1Y * t * Math.pow((1-t), 2) + 3 * p2Y * Math.pow(t, 2) * (1-t) + p[pointsAmount*i+pointsAmount].v.y * Math.pow(t, 3);
-            newPoints.push({x: x/5, y: y/5});
+            // y = p[pointsAmount*i].v.y*Math.pow((1-t), 3) + 3 * p1Y * t * Math.pow((1-t), 2) + 3 * p2Y * Math.pow(t, 2) * (1-t) + p[pointsAmount*i+pointsAmount].v.y * Math.pow(t, 3);
+            newPoints.push({x: x/15});
             // newPoints.push(new Array(x/30, y/60, z/10));
             t += 1/pointsAmount;
          }
       }
 
-
-      // console.log(newPoints);
       return newPoints;
    }
 
 
 })();
+
+//wynik: przeskalowanie parametrów /15 przeskalowanie wyniku /5
+//wynik2: przeskalowanie wyniku / 15 20 30gu
