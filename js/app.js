@@ -36,7 +36,7 @@ var App = (function(){
       {min: -2/przeskalowanie, max: 4.75/przeskalowanie},
       {min: -3.5/przeskalowanie, max: 11/przeskalowanie},
       {min: -3/przeskalowanie, max: 3.25/przeskalowanie},
-      {min: -5/przeskalowanie, max: 2.25/przeskalowanie},
+      {min: -1.5/przeskalowanie, max: 2.25/przeskalowanie},
       {min: -3.75/przeskalowanie, max: 3.75/przeskalowanie},
       {min: -2.5/przeskalowanie, max: 3.25/przeskalowanie},
       {min: -2/przeskalowanie, max: 1/przeskalowanie},
@@ -59,30 +59,76 @@ var App = (function(){
       {min: -2.25/przeskalowanie, max: 1.5/przeskalowanie}
    ];
 
+   //battlo poziom 2
+   // var staticParameters = [
+   //    {min: 0, max: 0},
+   //    {min: 3/przeskalowanie, max: 3},
+   //    {min: -1/przeskalowanie, max: 3},
+   //    {min: 0.75/przeskalowanie, max: 3},
+   //    {min: 4.75/przeskalowanie, max: 3/przeskalowanie},
+   //    {min: -1.75/przeskalowanie, max: 3/przeskalowanie},
+   //    {min: 1/przeskalowanie, max: 3/przeskalowanie},
+   //    {min: 2.25/przeskalowanie, max: 3/przeskalowanie},
+   //    {min: 3.75/przeskalowanie, max: 3/przeskalowanie},
+   //    {min: 3.25/przeskalowanie, max: 3/przeskalowanie}
+   // ];
+
+   //battlo pion 2
+   // var staticParameters = [
+   //    {min: 0, max: 0},
+   //    {min: 1.25/przeskalowanie, max: 3},
+   //    {min: -2/przeskalowanie, max: 3},
+   //    {min: -0.25/przeskalowanie, max: 3},
+   //    {min: -1.5/przeskalowanie, max: 3/przeskalowanie},
+   //    {min: -0.25/przeskalowanie, max: 3/przeskalowanie},
+   //    {min: 0.5/przeskalowanie, max: 3/przeskalowanie},
+   //    {min: -0.75/przeskalowanie, max: 3/przeskalowanie},
+   //    {min: 3.25/przeskalowanie, max: 3/przeskalowanie},
+   //    {min: 0.5/przeskalowanie, max: 3/przeskalowanie}
+   // ];
+
+   //mila poziomo 2
+   // var staticParameters = [
+   //    {min: 0, max: 0},
+   //    {min: -1.5/przeskalowanie, max: 3},
+   //    {min: -3.75/przeskalowanie, max: 3},
+   //    {min: -2.5/przeskalowanie, max: 3},
+   //    {min: -2/przeskalowanie, max: 3/przeskalowanie},
+   //    {min: -3.5/przeskalowanie, max: 3/przeskalowanie},
+   //    {min: -3/przeskalowanie, max: 3/przeskalowanie},
+   //    {min: -1.5/przeskalowanie, max: 3/przeskalowanie},
+   //    {min: -3.75/przeskalowanie, max: 3/przeskalowanie},
+   //    {min: -2.5/przeskalowanie, max: 3/przeskalowanie}
+   // ];
+
+   //battlo 1
    var staticParameters = [
       {min: 0, max: 0},
-      {min: 3/przeskalowanie, max: 3},
-      {min: -1/przeskalowanie, max: 3},
-      {min: 0.75/przeskalowanie, max: 3},
-      {min: 4.75/przeskalowanie, max: 3/przeskalowanie},
-      {min: -1.75/przeskalowanie, max: 3/przeskalowanie},
-      {min: 1/przeskalowanie, max: 3/przeskalowanie},
+      {min: 2.25/przeskalowanie, max: 3},
+      {min: 4.75/przeskalowanie, max: 3},
+      {min: 2.25/przeskalowanie, max: 3},
       {min: 2.25/przeskalowanie, max: 3/przeskalowanie},
-      {min: 3.75/przeskalowanie, max: 3/przeskalowanie},
-      {min: 3.25/przeskalowanie, max: 3/przeskalowanie}
+      {min: 11/przeskalowanie, max: 3/przeskalowanie},
+      {min: 3.25/przeskalowanie, max: 3/przeskalowanie},
+      {min: 1.25/przeskalowanie, max: 3/przeskalowanie},
+      {min: 1.25/przeskalowanie, max: 3/przeskalowanie},
+      {min: 0/przeskalowanie, max: 3/przeskalowanie}
    ];
-   var staticParametersY = [
-      {min: 0, max: 0},
-      {min: 2/przeskalowanie, max: 1.25/przeskalowanie},
-      {min: 2/przeskalowanie, max: 3/przeskalowanie},
-      {min: 4/przeskalowanie, max: 2.5/przeskalowanie},
-      {min: 8.25/przeskalowanie, max: 4.5/przeskalowanie},
-      {min: 8.75/przeskalowanie, max: 4/przeskalowanie},
-      {min: 10.75/przeskalowanie, max: 8.5/przeskalowanie},
-      {min: 11.5/przeskalowanie, max: 8.5/przeskalowanie},
-      {min: 12.25/przeskalowanie, max: 11/przeskalowanie},
-      {min: 13.5/przeskalowanie, max: 11.5/przeskalowanie}
-   ];
+
+
+
+   // var staticParametersY = [
+   //    {min: 0, max: 0},
+   //    {min: 2/przeskalowanie, max: 1.25/przeskalowanie},
+   //    {min: 2/przeskalowanie, max: 3/przeskalowanie},
+   //    {min: 4/przeskalowanie, max: 2.5/przeskalowanie},
+   //    {min: 8.25/przeskalowanie, max: 4.5/przeskalowanie},
+   //    {min: 8.75/przeskalowanie, max: 4/przeskalowanie},
+   //    {min: 10.75/przeskalowanie, max: 8.5/przeskalowanie},
+   //    {min: 11.5/przeskalowanie, max: 8.5/przeskalowanie},
+   //    {min: 12.25/przeskalowanie, max: 11/przeskalowanie},
+   //    {min: 13.5/przeskalowanie, max: 11.5/przeskalowanie}
+   // ];
 
    // staticParametersY.reverse();
 
@@ -379,8 +425,8 @@ var App = (function(){
                });
                var k= pointsAmount;
                while(typeof points[k] !== 'undefined'){
+                  // points[k].v.x += ((Math.random() * 10 ) -5)/15;
                   points[k].v.x += ((Math.random() * (bezierParameters[3*(k/pointsAmount)].max + Math.abs(bezierParameters[3*(k/pointsAmount)].min))) + bezierParameters[3*(k/pointsAmount)].min)/15;
-                  // points[k].v.y += (Math.random() * (bezierParametersY[3*(k/pointsAmount)].max));
                   // points[k].v.x += staticParameters[3*(k/pointsAmount)].min/10;
                   k += pointsAmount;
                }
@@ -401,17 +447,6 @@ var App = (function(){
                   points[pointsAmount*k+7].v.x += newP[(pointsAmount-1)*k+6].x;
                   points[pointsAmount*k+8].v.x += newP[(pointsAmount-1)*k+7].x;
                   points[pointsAmount*k+9].v.x += newP[(pointsAmount-1)*k+8].x;
-
-                  // points[pointsAmount*k+1].v.y += newP[(pointsAmount-1)*k].y;
-                  // points[pointsAmount*k+2].v.y += newP[(pointsAmount-1)*k+1].y;
-                  // points[pointsAmount*k+3].v.y += newP[(pointsAmount-1)*k+2].y;
-                  // points[pointsAmount*k+4].v.y += newP[(pointsAmount-1)*k+3].y;
-                  // points[pointsAmount*k+5].v.y += newP[(pointsAmount-1)*k+4].y;
-                  // points[pointsAmount*k+6].v.y += newP[(pointsAmount-1)*k+5].y;
-                  // points[pointsAmount*k+7].v.y += newP[(pointsAmount-1)*k+6].y;
-                  // points[pointsAmount*k+8].v.y += newP[(pointsAmount-1)*k+7].y;
-                  // points[pointsAmount*k+9].v.y += newP[(pointsAmount-1)*k+8].y;
-
                }
                // console.log(newP, points);
 
@@ -455,14 +490,18 @@ var App = (function(){
       var splices = Math.floor(p.length / pointsAmount);
       for(var i=0; i<splices; i++){
          var t = 1/pointsAmount;
+         // p1 = (Math.random() * 10) - 5;
+         // p2 = (Math.random() * 10) - 5;
          p1 = (Math.random() * (bezierParameters[3*i+1].max + Math.abs(bezierParameters[3*i+1].min))) + bezierParameters[3*i+1].min;
          p2 = (Math.random() * (bezierParameters[3*i+2].max + Math.abs(bezierParameters[3*i+2].min))) + bezierParameters[3*i+2].min;
+
          // p1Y = (Math.random() * (bezierParametersY[3*i+1].max));
          // p2Y = (Math.random() * (bezierParametersY[3*i+2].max));
          // p1 = bezierParameters[3*i+1].max;
          // p2 = bezierParameters[3*i+2].max;
          // p1Y = bezierParametersY[3*i+1].max;
          // p2Y = bezierParametersY[3*i+2].max;
+
          // p1 = staticParameters[3*i+1].min;
          // p2 = staticParameters[3*i+2].min;
 
